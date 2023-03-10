@@ -1,39 +1,37 @@
 const firstNumber = parseInt(prompt('Please enter first number:', 0));
 const secondNumber = parseInt(prompt('Please enter second number:', 22));
 
-firstNumber && secondNumber ? thirdNumber = 80 : thirdNumber = 40;
+const thirdNumber = (firstNumber && secondNumber) ? 80 : 40;
 
 valuesDescription = []
 
 if (firstNumber >= 90) { 
-    valuesDescription.size = 'big'
+    valuesDescription.size = 'big';
 } else if (firstNumber <= 40) {
-    valuesDescription.size = 'small'
+    valuesDescription.size = 'small';
 } else {
-    valuesDescription.size = 'medium'
-};
+    valuesDescription.size = 'medium';
+}
 
-let thirdNumber;
+let fourhNumber;
 switch(valuesDescription.size) {
     case 'big':
-        thirdNumber = 1000
+        fourhNumber = 1000;
         break;
     case 'medium':
-        thirdNumber = 100
+        fourhNumber = 100;
         break;
     case 'small':
-        thirdNumber = 10
+        fourhNumber = 10;
         break;
     default:
-        throw new Error('Something went wrong! Please contact developer.');
-        break;
+        throw new Error('Something went wrong! Please contact the developer.');
     }
 
-let result = (firstNumber * secondNumber * thirdNumber);
+const result = firstNumber * secondNumber * thirdNumber;
 
-if (result % 2 !== 0){
-    console.log("Result's remainder is not equal to zero!")
+if (result % 2 !== 0) {
+    console.log(`Result's remainder is not equal to zero!`);
 } else if (secondNumber > 50) {
-    alert (secondNumber)
-};
-
+    alert(secondNumber);
+}
