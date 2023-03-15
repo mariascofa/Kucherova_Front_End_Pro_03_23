@@ -39,11 +39,11 @@ console.log(supportNum);
 //4 Find the arithmetic mean of all integers from 1 to 500.
 
 const length = 500;
-let number = 1;
+let firstNumber = 1;
 let sumResult = 1;
-while (number < length) {
-  number++;
-  sumResult += number;
+while (firstNumber < length) {
+  firstNumber++;
+  sumResult += firstNumber;
 }
 console.log(sumResult / length);
 
@@ -90,16 +90,17 @@ console.log(outpuFin);
 // 7 Check if an input is a prime number. Inform user about results.
 
 let userInput = prompt("Please enter a number:", 0);
-let answer = true;
+let isPrime = true;
 
 if (userInput > 1) {
   for (var i = 2; i < userInput; i++) {
     if (userInput % i === 0) {
-      answer = false;
+      isPrime = false;
     }
   }
 } else {
-  answer = false;
+  isPrime = false;
 }
 
-alert(`Enetered number is ${answer}!`);
+const answer = isPrime ? "a prime" : "not a prime";
+alert(`Input is ${answer} number!`);
