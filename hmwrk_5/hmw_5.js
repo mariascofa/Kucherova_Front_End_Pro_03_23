@@ -93,7 +93,7 @@ let userInput = prompt("Please enter a number:", 0);
 let isPrime = true;
 
 if (userInput > 1) {
-  for (var i = 2; i < userInput; i++) {
+  for (let i = 2; i < userInput; i++) {
     if (userInput % i === 0) {
       isPrime = false;
     }
