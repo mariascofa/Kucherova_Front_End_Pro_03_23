@@ -1,10 +1,10 @@
 //1 Display on the console a single comma-separated string of numbers from 10 to 20.
 
 let output = "";
-const strtNumber = 10;
+const startNumber = 10;
 const finNumber = 20;
 
-for (let iterNum = strtNumber; iterNum <= finNumber; iterNum++) {
+for (let iterNum = startNumber; iterNum <= finNumber; iterNum++) {
   if (iterNum === finNumber) {
     output += iterNum;
   } else {
@@ -16,7 +16,7 @@ console.log(output);
 //2 Display on the console the squares of numbers from 10 to 20 in one line separated by commas.
 
 let result = "";
-for (let updateNum = strtNumber; updateNum <= finNumber; updateNum++) {
+for (let updateNum = startNumber; updateNum <= finNumber; updateNum++) {
   if (updateNum === finNumber) {
     result += updateNum ** 2;
   } else {
