@@ -1,5 +1,6 @@
 const firstNumber = parseInt(prompt('Please enter first number:', 0));
 const secondNumber = parseInt(prompt('Please enter second number:', 22));
+console.log(secondNumber);
 
 const thirdNumber = (firstNumber && secondNumber) ? 80 : 40;
 
