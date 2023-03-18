@@ -92,11 +92,12 @@ console.log(
 
 // 7 Find the sum of all positive and even elements.
 
-const sumPositiveEven = numbersArray
-  .filter(function (element) {
-    return element > 0 && element % 2 === 0;
-  })
-  .reduce((sum, currentValue) => sum + currentValue);
+const sumPositiveEven = numbersArray.reduce((sum, currentValue) => {
+  if (currentValue > 0 && currentValue % 2 === 0) {
+    return sum + currentValue;
+  }
+  return sum;
+}, 0);
 
 console.log(`7. Sum of all positive and even elements: ${sumPositiveEven}.`);
 
