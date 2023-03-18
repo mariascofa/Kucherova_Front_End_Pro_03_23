@@ -7,17 +7,17 @@ console.log(numbersArray);
 
 // 1 Find the sum and the amount of positive elements in the array.
 
-let countNumb = 0;
+let countPositive = 0;
 let sumNumb = 0;
 numbersArray.forEach(function (element) {
   if (element > 0) {
-    countNumb++;
+    countPositive++;
     sumNumb += element;
   }
 });
 
 console.log(
-  `Amount of positive numbers: ${countNumb}.\nSum of all postive numbers: ${sumNumb}.`
+  `1. Amount of positive numbers: ${countPositive}.\nSum of all postive numbers: ${sumNumb}.`
 );
 
 // 2 Find the minimum value and its sequence number in the array.
@@ -29,7 +29,7 @@ let minIndex = numbersArray.findIndex(function (item) {
 });
 
 console.log(
-  `Minimum value: ${minValue}.\nIndex of the minimum number: ${minIndex}. Sequence number: ${
+  `2. Minimum value: ${minValue}.\nIndex of the minimum number: ${minIndex}. Sequence number: ${
     minIndex + 1
   }.`
 );
@@ -47,7 +47,7 @@ for (let index = 0; index < numbersArray.length; index++) {
 }
 
 console.log(
-  `Maximum value: ${maxElement}.\nIndex of the maximum number: ${maxIndex}. Sequence number: ${
+  `3. Maximum value: ${maxElement}.\nIndex of the maximum number: ${maxIndex}. Sequence number: ${
     maxIndex + 1
   }.`
 );
@@ -62,28 +62,32 @@ numbersArray.forEach(function (element) {
   }
 });
 
-console.log(`Amount of negative values in the array: ${countNegativeNumb}.`);
+console.log(`4. Amount of negative values in the array: ${countNegativeNumb}.`);
 
 // 5 Find the amount of uneven positive elements.
 
-let countPositiveNumb = 0;
+let countPositiveUnevenNumb = 0;
 
 numbersArray.forEach(function (element) {
   if (element > 0 && element % 2 !== 0) {
-    countPositiveNumb++;
+    countPositiveUnevenNumb++;
   }
 });
 
-console.log(`Amount of of uneven positive elements: ${countPositiveNumb}.`);
+console.log(
+  `5. Amount of of uneven positive elements: ${countPositiveUnevenNumb}.`
+);
 
 // 6 Find the amount of even positive elements.
+
+// countPositiveEvenNumb = countPositive - countPositiveUnevenNumb;
 
 const countPositiveEvenNumb = numbersArray.filter(function (element) {
   return element > 0 && element % 2 === 0;
 });
 
 console.log(
-  `Amount of even positive elements in the array: ${countPositiveEvenNumb.length}.`
+  `6. Amount of even positive elements in the array: ${countPositiveEvenNumb.length}.`
 );
 
 // 7 Find the sum of all positive and even elements.
@@ -94,7 +98,7 @@ const sumPositiveEven = numbersArray
   })
   .reduce((sum, currentValue) => sum + currentValue);
 
-console.log(`Sum of all positive and even elements: ${sumPositiveEven}.`);
+console.log(`7. Sum of all positive and even elements: ${sumPositiveEven}.`);
 
 //8 Find the sum of all positive and uneven elements.
 
@@ -106,7 +110,9 @@ numbersArray.forEach(function (element) {
   }
 });
 
-console.log(`Sum of all positive and uneven elements: ${positiveUnevenSum}.`);
+console.log(
+  `8. Sum of all positive and uneven elements: ${positiveUnevenSum}.`
+);
 
 //9 Find the product of all positive values in the array.
 
@@ -117,7 +123,7 @@ const productPositive = numbersArray
   .reduce((product, eachValue) => product * eachValue);
 
 console.log(
-  `The product of all positive values in the array: ${productPositive}.`
+  `9. The product of all positive values in the array: ${productPositive}.`
 );
 
 //10 Find the biggest value in the array, other values change to zero.
@@ -129,7 +135,7 @@ const UpdatedArray = numbersArray.map(function (element) {
 });
 
 console.log(
-  `New array, with the numbers, that are not equal to maximum, updated to zero: ${UpdatedArray}.`
+  `10. New array, with the numbers, that are not equal to maximum, updated to zero: ${UpdatedArray}.`
 );
 
 for (let newIndex = 0; newIndex < numbersArray.length; newIndex++) {
@@ -138,4 +144,4 @@ for (let newIndex = 0; newIndex < numbersArray.length; newIndex++) {
   }
 }
 
-console.log(`Initial array with the updated values: ${numbersArray}.`);
+console.log(`11. Initial array with the updated values: ${numbersArray}.`);
