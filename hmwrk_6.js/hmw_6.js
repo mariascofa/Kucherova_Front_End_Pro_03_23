@@ -86,8 +86,10 @@ const countPositiveEvenNumb = numbersArray.filter(function (element) {
   return element > 0 && element % 2 === 0;
 });
 
+const finalPositiveEvenLength = countPositiveEvenNumb.length;
+
 console.log(
-  `6. Amount of even positive elements in the array: ${countPositiveEvenNumb.length}.`
+  `6. Amount of even positive elements in the array: ${finalPositiveEvenLength}.`
 );
 
 // 7 Find the sum of all positive and even elements.
