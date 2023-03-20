@@ -28,11 +28,10 @@ let minIndex = numbersArray.findIndex(function (item) {
   return item === minValue;
 });
 
+const sequenceMinNumber = minIndex + 1;
+
 console.log(
-  `2. Minimum value: ${minValue}.\nIndex of the minimum number: ${minIndex}. Sequence number: ${
-    minIndex + 1
-  }.`
-);
+  `2. Minimum value: ${minValue}.\nIndex of the minimum number: ${minIndex}. Sequence number: ${sequenceMinNumber}.`);
 
 // 3 Find the biggest value and its sequence number in the array.
 
@@ -46,11 +45,10 @@ for (let index = 0; index < numbersArray.length; index++) {
   }
 }
 
+const sequenceMaxNumber = maxIndex + 1;
+
 console.log(
-  `3. Maximum value: ${maxElement}.\nIndex of the maximum number: ${maxIndex}. Sequence number: ${
-    maxIndex + 1
-  }.`
-);
+  `3. Maximum value: ${maxElement}.\nIndex of the maximum number: ${maxIndex}. Sequence number: ${sequenceMaxNumber}.`);
 
 // 4 Find the amount of negative values.
 
