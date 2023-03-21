@@ -67,10 +67,7 @@ function balanceConverting(inputBalance) {
 // Creating and displaying an array with numbers for users whose account balance exceeds $2,000:
 
 const phoneArray = users
-  .filter((user) => {
-    const balance = balanceConverting(user.balance);
-    return balance > 2000;
-  })
+  .filter((user) => balanceConverting(user.balance) > 2000)
   .map(({ phone }) => phone);
 
 console.log(phoneArray);
