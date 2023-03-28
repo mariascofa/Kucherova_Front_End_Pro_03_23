@@ -6,7 +6,7 @@ function arrayChecker(array1, array2) {
 
 function removeElement(userArray, item) {
   const itemIndex = userArray.findIndex((element) => {
-    if (typeof item !== "object" || item !== null) {
+    if (typeof item !== "object" && item !== null) {
       return element === item;
     } else if (typeof item === "object") {
       return typeof element === "object" && arrayChecker(element, item);
