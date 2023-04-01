@@ -1,5 +1,11 @@
 // 1. Create the function removeElement(array, item) to remove the element item from the array.
 
+let length = 5;
+
+for (let i = 0; i < length; i++) {
+  console.log(i);
+}
+
 function arrayChecker(array1, array2) {
   return array1.every((element, index) => element === array2[index]);
 }
@@ -32,6 +38,7 @@ function generateKey(length, characters) {
   for (let i = 0; i < length; i++) {
     randomIndexes.push(Math.floor(Math.random() * characters.length));
   }
+  console.log("AAAA", randomIndexes)
   resultArray = randomIndexes.map((element) => characters[element]);
   return resultArray.join("");
 }
