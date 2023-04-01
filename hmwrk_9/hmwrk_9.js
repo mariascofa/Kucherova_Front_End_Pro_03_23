@@ -32,8 +32,8 @@ console.log(factorialOptionTwo(newArray));
 // 2
 
 let calculator = {
-  a: 5,
-  b: 7,
+  a: 0,
+  b: 0,
   read() {
     this.a = parseInt(prompt("Please enter first number"));
     this.b = parseInt(prompt("Please enter second number"));
