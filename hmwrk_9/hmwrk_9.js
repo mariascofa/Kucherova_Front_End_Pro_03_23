@@ -47,5 +47,5 @@ let calculator = {
 };
 
 calculator.read();
-alert(calculator.sum());
-alert(calculator.mul());
+alert(`Inputs sum: ${calculator.sum()}`);
+alert(`Inputs product: ${calculator.mul()}`);
