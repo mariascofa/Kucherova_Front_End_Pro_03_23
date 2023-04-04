@@ -1,7 +1,6 @@
 // 1
 
 const arr1 = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
-const arr2 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
 const uniqueValues = (arr) => {
   const uniqueArray = [];
@@ -52,25 +51,30 @@ z(x);
 
 // 4
 
-let someFunction = () => {
-  console.log("success");
-};
+function debounce(f, ms) {
+  let onPause = false;
 
-// someFunction()
+  return function () {
+    console.log("new function started");
+    if (onPause) {
+      return;
+    }
 
+    f();
 
-function debounce(func, ms) {
-  return () => {
-    return setTimeout(() => func(), 10000);
+    onPause = true;
+
+    setTimeout(() => {
+      onPause = false;
+    }, ms);
   };
 }
 
-// setTimeout( () => someFunction(), 10000);
-// setTimeout( () => someFunction(), 1000);
-// setTimeout( () => someFunction(), 100);
+let f = debounce(alert, 1000);
 
-let f = debounce(someFunction, 1000000);
+f(1); // executed
+f(2); // ignored
 
-f(1); // выполняется немедленно
-f(2);
-f(3);// проигнорирован
+setTimeout(() => f(3), 100); // ignored
+setTimeout(() => f(4), 1100); // executed
+setTimeout(() => f(5), 1500); // ignored
