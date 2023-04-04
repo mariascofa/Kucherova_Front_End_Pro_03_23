@@ -55,7 +55,6 @@ function debounce(f, ms) {
   let onPause = false;
 
   return function () {
-    console.log("new function started");
     if (onPause) {
       return;
     }
