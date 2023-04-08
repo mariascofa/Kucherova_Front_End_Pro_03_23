@@ -84,8 +84,9 @@ const textExample2 = new ezjQuery("body").add("div").render();
 console.log(textExample2);
 
 //2.1 Class example
-class ezjQuery {
+class ezjQueryCl {
   constructor(tag) {
+    this.tag = tag;
     this.firstTag = `<${tag}></${tag}>`;
   }
   add(newTag, text = null) {
@@ -100,12 +101,12 @@ class ezjQuery {
   }
   render = function () {
     let renderedTag = this.firstTag;
-    this.firstTag = `<${tag}></${tag}>`;
+    this.firstTag = `<${this.tag}></${this.tag}>`;
     return renderedTag;
   };
 }
 
-const clsText = new ezjQuery("body").add("ul").add("ul", "hello").render();
-console.log(nma);
-const clsText2 = new ezjQuery("body").add("div").render();
+const clsText = new ezjQueryCl("body").add("ul").add("ul", "hello").render();
+console.log(clsText);
+const clsText2 = new ezjQueryCl("body").add("div").render();
 console.log(clsText2);
