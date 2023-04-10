@@ -1,4 +1,4 @@
-// 1)Проверьте что строка содержит все символы от "a" до "z"
+// 1
 
 function alphabetChecker(string) {
   let englishAlphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -18,14 +18,12 @@ console.log(alphabetChecker("qpwoeirutyalskdjfhgmznxbcv")); // true
 console.log(alphabetChecker("qqqqqqqqpwoeirutyAlskdjfhgmznxbcv")); // true
 console.log(alphabetChecker("0123456789abcdefghijklmnop")); // false
 
-// 2)Вам дано предложение, верните массив из слов,
-//которые длинее чем средняя длина всех слов.
-//Слова разделены пробелами, если в предложении запятые,они должны быть пропущены
+// 2
 
 // function wordsCalculator(arr) {
 //   const symbols = /[ ,.!?@#$%^&*()<>`~"'{}\/+_-]+/;
 //   let sentenceArray = arr[0].split(symbols).filter(Boolean);
-//   totalLength = sentenceArray.reduce((acc, elem) => acc + elem.length, 0);
+//   let totalLength = sentenceArray.reduce((acc, elem) => acc + elem.length, 0);
 //   let averageLen = totalLength / sentenceArray.length;
 //   const updatedArray = sentenceArray.filter((elem) => elem.length > averageLen);
 //   return updatedArray;
@@ -33,10 +31,13 @@ console.log(alphabetChecker("0123456789abcdefghijklmnop")); // false
 
 function wordsCalculator(arr) {
   this.allSentencesArr = [];
-  updatedSentences = arr.map((newSentence) => {
+  arr.forEach((newSentence) => {
     const symbols = /[ ,.!?@#$%^&*()<>`~"'{}\/+_-]+/;
     let sentenceArray = newSentence.split(symbols).filter(Boolean);
-    const totalLength = sentenceArray.reduce((acc, elem) => acc + elem.length, 0);
+    const totalLength = sentenceArray.reduce(
+      (acc, elem) => acc + elem.length,
+      0
+    );
     let averageLen = totalLength / sentenceArray.length;
     let updatedArray = sentenceArray.filter((elem) => elem.length > averageLen);
     this.allSentencesArr.push(updatedArray);
@@ -50,10 +51,36 @@ console.log(
 // console.log(wordsCalculator(["Some another sample"])); //expected ["another" "sample"]
 // console.log(wordsCalculator(["Do, do, do, do... do it!"]));
 
+// 3
 
-// Сделайте 4 объекта - не усложняйте, просто наследование через __proto__
-// - Пользователь - Верифицированный пользователь - Гость - База данных -
-// База хранит информацию о пользователях
-// Пользователи знают мыло админа
-// Aдмин знает пароль от базы данных
-// Гости могут зарегистрироваться в базе данных
+const dataBase = {
+  users: [],
+  password: "password123",
+};
+
+const admin = {
+  adminName: "Admin",
+  __proto__: dataBase,
+  // dbPassword : dataBase.password,
+  email: "admin@gmail.com",
+};
+
+const user = {
+  adminEmail: admin.email,
+};
+
+function Guest(name) {
+  this.name = name;
+}
+
+Guest.prototype.register = function () {
+  dataBase.users.push(this);
+  this.__proto__ = user;
+};
+
+Bob = new Guest("Bob");
+Bob.register();
+console.log(dataBase.users);
+Sam = new Guest("Sam");
+Sam.register();
+console.log(dataBase.users);
