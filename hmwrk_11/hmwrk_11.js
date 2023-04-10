@@ -48,10 +48,10 @@ function unevenCountFilter(arr) {
     countDict[elem] ? countDict[elem]++ : (countDict[elem] = 1);
   }
   let uniqueArr = Object.keys(countDict);
-  unevenCountArrayStr = uniqueArr.filter(
+  let unevenCountArrayStr = uniqueArr.filter(
     (element) => countDict[element] % 2 !== 0
   );
-  unevenCountArrayInt = unevenCountArrayStr.map((element) => parseInt(element));
+  let unevenCountArrayInt = unevenCountArrayStr.map((element) => parseInt(element));
   return unevenCountArrayInt;
 }
 
