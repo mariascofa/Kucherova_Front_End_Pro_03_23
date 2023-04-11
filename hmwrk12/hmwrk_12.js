@@ -78,9 +78,9 @@ Guest.prototype.register = function () {
   this.__proto__ = user;
 };
 
-Bob = new Guest("Bob");
+let Bob = new Guest("Bob");
 Bob.register();
 console.log(dataBase.users);
-Sam = new Guest("Sam");
+let Sam = new Guest("Sam");
 Sam.register();
 console.log(dataBase.users);
