@@ -1,6 +1,4 @@
-// 1)Напишите функцию.На вход функции подаётся список строк и нужно найти
-// общий для всех этих строк префикс максимальной длины.
-// Например, для списка ["programming", "product", "procrastination"] — ответом будет "pro"
+// 1
 
 example = ["p", "product", "procrastination"];
 
@@ -32,11 +30,11 @@ function commonPrefics(arr) {
 
 console.log(commonPrefics(example));
 
-// 2)Напишите функцию которая превращает массив двухмерных массивов в массив трехмерных и наоборот.
-// Остаток добавляется в новый массив`
+// 2
 
 function orderChange(array, size) {
   let flatArray = array.flat();
+  //number of needed arrays in arrays
   let arraysNumber = Math.ceil(flatArray.length / size);
 
   let startNumb = 0;
