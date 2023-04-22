@@ -4,7 +4,7 @@ example = ["p", "product", "procrastination"];
 
 function commonPrefics(arr) {
   if (arr.length === 0) {
-    return "Array is empty!";
+    throw new Error("Array is empty!");
   }
 
   //selecting shortest string in the array
@@ -34,7 +34,7 @@ console.log(commonPrefics(example));
 
 function orderChange(array, size) {
   let flatArray = array.flat();
-  //number of needed arrays in arrays
+  //number of needed arrays in the final array
   let arraysNumber = Math.ceil(flatArray.length / size);
 
   let startNumb = 0;
