@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=(()=>{let e=prompt("Please enter your name:");return e||(alert("You didn't enter a name. Please try again."),e=prompt("Please enter your name:")),e})();document.getElementById("Name").addEventListener("click",(()=>console.log(`The name is ${e}`)))})();

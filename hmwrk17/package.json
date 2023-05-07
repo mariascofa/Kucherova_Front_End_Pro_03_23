@@ -1,0 +1,21 @@
+{
+  "name": "hmwrk17",
+  "version": "1.0.0",
+  "main": "basic.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Kucherova_Front_End_Pro_03_23"
+  },
+  "author": "Mariia Kucherova",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
