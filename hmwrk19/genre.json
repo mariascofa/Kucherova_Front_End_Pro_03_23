@@ -1,0 +1,68 @@
+{
+  "brit": {
+    "Pulp" : {
+      "Different Class" : {
+        "year":"1995",
+        "price": "$25"
+      },
+      "This is Hardcore" : {
+        "year":"1998",
+        "price": "$30"
+      }
+    },
+    "Blur" : {
+      "13" : {
+        "year":"1999",
+        "price": "$35"
+      },
+      "Leisure" : {
+        "year":"1991",
+        "price": "$15"
+      }
+    }
+  },
+  "psych": {
+    "The Brian Jonestown Massacre" : {
+      "Who Killed Sgt. Pepper?" : {
+        "year":"2010",
+        "price": "$15"
+      },
+      "Give it Back!" : {
+        "year":"2008",
+        "price": "$10"
+      }
+    },
+    "Pink Floyd" : {
+      "Wish you Were Here" : {
+        "year":"1975",
+        "price": "$30"
+      },
+      "The Wall" : {
+        "year":"1979",
+        "price": "$30"
+      }
+    }
+  },
+  "new": {
+    "The Cars" : {
+      "Heartbeat City" : {
+        "year":"1984",
+        "price": "$25"
+      },
+      "Panorama" : {
+        "year":"1980",
+        "price": "$20"
+      }
+    },
+    "Gary Numan" : {
+      "The Pleasure Principle" : {
+        "year":"1979",
+        "price": "$30"
+      },
+      "Replicas Redux" : {
+        "year":"1979",
+        "price": "$28"
+      }
+    }
+  }
+}
