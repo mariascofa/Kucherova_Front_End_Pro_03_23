@@ -1,0 +1,26 @@
+body {
+    background-color: #616973;
+}
+
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+} 
+
+.emoji_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  width: 100px;
+}
+
+.emoji {
+  font-size: 40px;
+}
+
+.emoji_number {
+  font-size: 20px;
+}
