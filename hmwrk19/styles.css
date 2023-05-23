@@ -1,12 +1,37 @@
-header {
+.header_box {
   text-align: center;
   width: 260px;
-  margin: 10px 10px 10px 50px;
-  background-color:  #000000;
+  background-color: #4f565e;
   color: #ffffff;
   font-size: 20px;
   box-shadow: 5px 5px 8px rgba(203, 199, 201, 0.3);
   font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.warning_box {
+  text-align: center;
+  width: auto;
+  background-color: #4f565e;
+  color: #ffffff;
+  margin: 30px 50px 50px 50px;
+  font-size: 20px;
+  box-shadow: 5px 5px 8px rgba(203, 199, 201, 0.3);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+header {
+  display: flex; align-items: center;
+  margin: 30px 50px 50px 50px;
+  justify-content: space-between;
+}
+
+
+.cart {
+  border-radius: 50%;
+  padding: 30px;
+  font-size: 30px;
+  background-color:  #4f565e;
+  box-shadow: 5px 5px 8px rgba(203, 199, 201, 0.3);
 }
 
 body {
@@ -24,7 +49,7 @@ body {
 } 
 
 .box {
-  border-radius: 8px;
+  border-radius: 3px;
   justify-content: center;
   text-align: left;
   font-size: 20px;
@@ -47,7 +72,6 @@ display: none;
 list-style-type: none;
 }
 
-
 button {
   display: inline-block;
   padding: 10px 20px;
@@ -56,10 +80,54 @@ button {
   text-align: center;
   color: #ffffff;
   background-color: #000000;
-  border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
   font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+
+.form-container {
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #933737;
+  border-radius: 2px;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn_group {
+  justify-content: space-between;
+}
+
+label {
+  display: block;
+  font-size: 20px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  font-size: 20px;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+button[type="submit"]:hover {
+  background-color: #000000;
+  display: inline-block;
 }
