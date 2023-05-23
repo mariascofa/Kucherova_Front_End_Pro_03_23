@@ -7,9 +7,10 @@ const descriptionSection = document.querySelector("#description");
 const bandsDiv = document.querySelector("#band_div");
 const albumsDiv = document.querySelector("#albums_div");
 
+// Creating an HTML for the buying form dynamically
 let formHtml = `<form class="form-container" id="buy_form">
     <div class="form-group">
-      <label for="full-name" id="full-name">Full Name:</label>
+      <label for="full-name" >Full Name:</label>
       <input type="text" id="full-name" name="full-name" required>
     </div>
 
@@ -27,7 +28,7 @@ let formHtml = `<form class="form-container" id="buy_form">
       <select id="city" name="city" required>
         <option value="" disabled selected>Select Region</option>`;
 
-// Generate region options dynamically
+// Generate region options dynamically from the provided json file
 Object.keys(regions).forEach((region) => {
   formHtml += `<option value="${region}">${region}</option>`;
 });
@@ -54,15 +55,11 @@ formHtml += `</select>
     </div>
 </form>`;
 
-{
-  /* <label for="warehouse">Nova Poshta Warehouse:</label>
-<input type="text" id="warehouse" name="warehouse" required> */
-}
-
+// Function to show the band section based on the selected category
 function showBandSection(catId) {
   //removing old warning
   let nameInput = document.querySelector("#warning");
-  nameInput.innerHTML = ``;
+  nameInput.textContent = "";
   //show bands box
   bandsDiv.style.display = "inline-block";
   //hide albums box
@@ -71,10 +68,17 @@ function showBandSection(catId) {
   bandSection.innerHTML = "";
   //get all the bands under selected category
   let categBands = Object.keys(categProdConnect[catId]);
+
+  // Getting all the bands under the selected category as a list
   categBands.forEach((band) => {
     const bandListItem = document.createElement("li");
     bandListItem.textContent = band;
+
+    // Event listener for clicking on a band
     bandListItem.addEventListener("click", function () {
+      nameInput.textContent = "";
+
+      // Getting the albums for the selected band
       const categBandAlbums = categProdConnect[catId][band];
       showDescriptionSection(categBandAlbums);
     });
@@ -83,6 +87,7 @@ function showBandSection(catId) {
   });
 }
 
+// Function to check if a name is valid
 function isValidName(name) {
   const namePattern = /^[A-Za-z\s]+$/;
   return namePattern.test(name);
@@ -93,11 +98,9 @@ function buyForm(button, listZone, album) {
   let formDiv = document.createElement("div");
   formDiv.innerHTML = formHtml;
 
-  //hiding initial "Buy button"
-  button.style.display = "none";
   //defining Return and Buy buttons inside of the form
-  let exitBtn = formDiv.querySelector("#exit_btn");
   let formBuy = formDiv.querySelector("#buy_form");
+  let exitBtn = formDiv.querySelector("#exit_btn");
   let submitBtn = formDiv.querySelector("#submit_btn");
 
   //defining city and div for the warehouse to be able to select warehouse number
@@ -118,6 +121,7 @@ function buyForm(button, listZone, album) {
     let warehouseSelect = document.createElement("select");
     warehouseSelect.required = true;
 
+    //adding warehouse options in a list based on the region
     regions[selectedCity].forEach((warehouse) => {
       let newOption = document.createElement("option");
       newOption.value = warehouse;
@@ -129,6 +133,7 @@ function buyForm(button, listZone, album) {
   });
 
   exitBtn.addEventListener("click", function () {
+    //hide button that opens the form
     formBuy.style.display = "none";
     button.style.display = "inline-block";
   });
@@ -137,23 +142,25 @@ function buyForm(button, listZone, album) {
     event.preventDefault();
     let nameInput = formDiv.querySelector("#full-name");
     let nameValue = nameInput.value;
-    console.log(nameValue);
+    let warning = document.querySelector("#warning");
 
     if (isValidName(nameValue)) {
-      let nameInput = document.querySelector("#warning");
-      nameInput.innerHTML = ``;
-      nameInput.innerHTML = `Album ${album} was bought!`;
+      warning.innerHTML = ``;
+      warning.innerHTML = `Album "${album}" was bought!`;
     } else {
-      nameInput.innerHTML = ``;
-      nameInput.innerHTML = `You've entered a wrong name, please check your inputs!`;
+      console.log("not valid");
+      warning.innerHTML = ``;
+      warning.innerHTML = `You've entered a wrong name, please check your inputs!`;
     }
   });
 
   listZone.append(formDiv);
 }
 
+//function to show album description
 function showDescriptionSection(categBandAlbums) {
   descriptionSection.innerHTML = "";
+  //show album block
   albumsDiv.style.display = "inline-block";
 
   Object.keys(categBandAlbums).forEach((album) => {
@@ -177,7 +184,8 @@ function showDescriptionSection(categBandAlbums) {
 
     albumBtn.textContent = "Buy an Album";
     albumBtn.addEventListener("click", function () {
-      buyForm(albumBtn, subDescription, album);
+      albumBtn.style.display = "none";
+      buyForm(albumBtn, albumList, album);
     });
     btnDiv.appendChild(albumBtn);
     albumBlock.appendChild(btnDiv);
