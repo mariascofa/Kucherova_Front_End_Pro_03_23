@@ -6,6 +6,16 @@ const bandSection = document.querySelector("#bands");
 const descriptionSection = document.querySelector("#description");
 const bandsDiv = document.querySelector("#band_div");
 const albumsDiv = document.querySelector("#albums_div");
+let orderId = 0;
+
+let orderDescription = {
+  albumName: "albumName",
+  albumPrice: "albumPrice",
+  fullName: "full-name",
+  city: "city",
+  warehouse: "warehouse",
+  quantity: "quantity",
+};
 
 // Creating an HTML for the buying form dynamically
 let formHtml = `<form class="form-container" id="buy_form">
@@ -14,19 +24,19 @@ let formHtml = `<form class="form-container" id="buy_form">
       <input type="text" id="full-name" name="full-name" required>
     </div>
 
-    <div class="form-group">
-      <label for="payment-method">Payment Method:</label>
-      <select id="payment-method" name="payment-method" required>
-        <option value="" disabled selected>Select Payment Method</option>
-        <option value="cash-on-delivery">Cash on Delivery</option>
-        <option value="bank-card">Bank Card</option>
-      </select>
-    </div>
+  <div class="form-group">
+  <label for="payment-method">Payment Method:</label>
+    <select id="payment-method" name="payment-method" required>
+      <option value="" disabled selected>Select Payment Method</option>
+      <option value="cash-on-delivery">Cash on Delivery</option>
+      <option value="bank-card">Bank Card</option>
+    </select>
+  </div>
     
     <div class="form-group">
       <label for="city">Region:</label>
       <select id="city" name="city" required>
-        <option value="" disabled selected>Select Region</option>`;
+        <option value="" disabled selected required>Select Region</option>`;
 
 // Generate region options dynamically from the provided json file
 Object.keys(regions).forEach((region) => {
@@ -93,9 +103,73 @@ function isValidName(name) {
   return namePattern.test(name);
 }
 
-function buyForm(button, listZone, album) {
+function closeBuyForm(formDiv, buyButton) {
+  let formBuy = formDiv.querySelector("#buy_form");
+
+  formBuy.classList.toggle("form_container_none");
+  buyButton.style.display = "inline-block";
+}
+
+function warehouseSelection(warehouseDiv, selectedCity) {
+  warehouseDiv.innerHTML = "";
+
+  let warehouseLabel = document.createElement("label");
+  warehouseLabel.textContent = "Nova Poshta Warehouse:";
+  warehouseDiv.appendChild(warehouseLabel);
+
+  let warehouseSelect = document.createElement("select");
+  warehouseSelect.required = true;
+
+  //adding warehouse options in a list based on the region
+  regions[selectedCity].forEach((warehouse) => {
+    let newOption = document.createElement("option");
+    newOption.value = warehouse;
+    newOption.textContent = warehouse;
+    warehouseSelect.appendChild(newOption);
+  });
+
+  warehouseDiv.appendChild(warehouseSelect);
+}
+
+function submitOrder(formDiv, album, albumDescription, buyButton) {
+  let getInputValue = (selector) => formDiv.querySelector(selector).value;
+  let formBuy = formDiv.querySelector("#buy_form");
+  let nameValue = getInputValue("#full-name");
+  let cityValue = getInputValue("#city");
+  let warehouseValue = getInputValue("#warehouse");
+  let quantityValue = getInputValue("#quantity");
+  let warning = document.querySelector("#warning");
+
+  if (!formBuy.reportValidity()) {
+    warning.textContent = "Please fill out all required fields.";
+    return;
+  }
+
+  let orderInfo = {
+    albumName: album,
+    albumPrice: albumDescription["price"],
+    fullName: nameValue,
+    city: cityValue,
+    warehouse: warehouseValue,
+    quantity: quantityValue,
+  };
+
+  if (isValidName(nameValue)) {
+    localStorage.setItem(orderId, JSON.stringify(orderInfo));
+    orderId += 1;
+    warning.innerHTML = `Album "${album}" was bought!`;
+    closeBuyForm(formDiv, buyButton);
+  } else {
+    warning.innerHTML = `You've entered a wrong name, please check your inputs!`;
+  }
+}
+
+function buyForm(listZone, album, albumDescription, albumBtn) {
+  albumBtn.style.display = "none";
+
   //creating div for a future form
   let formDiv = document.createElement("div");
+  formDiv.id = "form_div";
   formDiv.innerHTML = formHtml;
 
   //defining Return and Buy buttons inside of the form
@@ -103,55 +177,27 @@ function buyForm(button, listZone, album) {
   let exitBtn = formDiv.querySelector("#exit_btn");
   let submitBtn = formDiv.querySelector("#submit_btn");
 
+  exitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    formBuy.classList.toggle("form_container_none");
+    albumBtn.style.display = "inline-block";
+  });
+
   //defining city and div for the warehouse to be able to select warehouse number
   //based on the city
   let city = formDiv.querySelector("#city");
-  const warehouseDiv = formDiv.querySelector("#warehouse");
 
   //adding warehouse input based on the previously selected city
   city.addEventListener("change", function (event) {
+    const warehouseDiv = formDiv.querySelector("#warehouse");
     let selectedCity = event.target.value;
-
-    warehouseDiv.innerHTML = "";
-
-    let warehouseLabel = document.createElement("label");
-    warehouseLabel.textContent = "Nova Poshta Warehouse:";
-    warehouseDiv.appendChild(warehouseLabel);
-
-    let warehouseSelect = document.createElement("select");
-    warehouseSelect.required = true;
-
-    //adding warehouse options in a list based on the region
-    regions[selectedCity].forEach((warehouse) => {
-      let newOption = document.createElement("option");
-      newOption.value = warehouse;
-      newOption.textContent = warehouse;
-      warehouseSelect.appendChild(newOption);
-    });
-
-    warehouseDiv.appendChild(warehouseSelect);
-  });
-
-  exitBtn.addEventListener("click", function () {
-    //hide button that opens the form
-    formBuy.style.display = "none";
-    button.style.display = "inline-block";
+    warehouseSelection(warehouseDiv, selectedCity);
   });
 
   submitBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    let nameInput = formDiv.querySelector("#full-name");
-    let nameValue = nameInput.value;
-    let warning = document.querySelector("#warning");
 
-    if (isValidName(nameValue)) {
-      warning.innerHTML = ``;
-      warning.innerHTML = `Album "${album}" was bought!`;
-    } else {
-      console.log("not valid");
-      warning.innerHTML = ``;
-      warning.innerHTML = `You've entered a wrong name, please check your inputs!`;
-    }
+    submitOrder(formDiv, album, albumDescription, albumBtn);
   });
 
   listZone.append(formDiv);
@@ -167,7 +213,6 @@ function showDescriptionSection(categBandAlbums) {
     const albumBlock = document.createElement("div");
     const albumList = document.createElement("li");
     albumList.textContent = album;
-
     const subDescription = document.createElement("ul");
     const albumItems = categBandAlbums[album];
     Object.keys(albumItems).forEach((descriptItems) => {
@@ -181,11 +226,11 @@ function showDescriptionSection(categBandAlbums) {
 
     const btnDiv = document.createElement("div");
     const albumBtn = document.createElement("button");
-
+    albumBtn.id = "buy_album_button";
     albumBtn.textContent = "Buy an Album";
+
     albumBtn.addEventListener("click", function () {
-      albumBtn.style.display = "none";
-      buyForm(albumBtn, albumList, album);
+      buyForm(albumList, album, categBandAlbums[album], albumBtn);
     });
     btnDiv.appendChild(albumBtn);
     albumBlock.appendChild(btnDiv);
@@ -199,3 +244,10 @@ categories.forEach((singleCategory) => {
     showBandSection(categId);
   });
 });
+
+function htmlPageCart() {
+  window.location.href = "cart.html";
+}
+
+let cartIcon = document.querySelector("#cart");
+cartIcon.addEventListener("click", htmlPageCart);

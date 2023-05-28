@@ -27,10 +27,27 @@ header {
 
 
 .cart {
+  display: flex;
+  justify-content: center; /* Horizontal center alignment */
+  align-items: center; 
   border-radius: 50%;
-  padding: 30px;
+  height: 90px;
+  width: 90px;
   font-size: 30px;
   background-color:  #4f565e;
+  box-shadow: 5px 5px 8px rgba(203, 199, 201, 0.3);
+}
+
+.back_to_music {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 50%;
+  height: 90px;
+  width: 90px;
+  font-size: 40px;
+  background-color:  #4f565e;
+  color:  #ffffff;
   box-shadow: 5px 5px 8px rgba(203, 199, 201, 0.3);
 }
 
@@ -87,6 +104,9 @@ button {
   font-family: "Trebuchet MS", Arial, sans-serif;
 }
 
+/* .button_hide {
+  display: none;
+} */
 
 .form-container {
   width: auto;
@@ -98,6 +118,10 @@ button {
   font-size: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+.form_container_none {
+  display: none;
 }
 
 .form-group {
